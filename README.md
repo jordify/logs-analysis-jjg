@@ -2,9 +2,15 @@
 
 A reporting tool to help analyze our news articles
 
-## How to Use It
+## Usage
+```
+usage: logsAnalysis.py [-h] [-c]
 
-Lorem ipsum
+optional arguments:
+  -h, --help          show this help message and exit
+  -c, --create_views  Recreate the views in the news database required for
+                          this analysis and then run analysis
+```
 
 ## Views Set Up in the Database
 
@@ -28,22 +34,18 @@ CREATE VIEW article_view_count AS
 This view gives the count of hits to the site by day and what percentage of those resulted in an `404 NOT FOUND` error
 ```sql
 CREATE VIEW access_by_date AS
-  WITH bad_access AS
-    (SELECT DATE(time) AS date, COUNT(path) AS bad
-      FROM log WHERE NOT (status = '200 OK')
-      GROUP BY DATE(time)
+  WITH bad_access AS (
+    SELECT DATE(time) AS date, COUNT(path) AS bad
+    FROM log WHERE NOT (status = '200 OK')
+    GROUP BY DATE(time)
     )
-  SELECT DATE(time), COUNT(path) AS access_count, (bad/count(path)::FLOAT) AS error_percentage
-    FROM log, bad_access
-    WHERE DATE(time) = date
-    GROUP BY DATE(time), bad
-    ORDER BY date ASC;
+  SELECT DATE(time), COUNT(path) AS access_count,
+    (bad/count(path)::FLOAT) AS error_percentage
+  FROM log, bad_access
+  WHERE DATE(time) = date
+  GROUP BY DATE(time), bad
+  ORDER BY date ASC;
 ```
-
-## Contributing
-
-Lorem ipsum
-
 ## License
 
 The contents of this repository are covered under the [MIT License](LICENSE).
