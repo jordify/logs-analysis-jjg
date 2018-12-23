@@ -9,13 +9,13 @@ usage: logsAnalysis.py [-h] [-c]
 optional arguments:
   -h, --help          show this help message and exit
   -c, --create_views  Recreate the views in the news database required for
-                          this analysis and then run analysis
+                      this analysis and then run analysis
 ```
 
 ## Views Set Up in the Database
 
-Two views have been added to the database schema to assist in analysis. These view can 
-be created by running the following:
+Two views have been added to the database schema to assist in analysis. These views can 
+be created by running `logAnalysis -c`
 
 ### New View: article_view_count
 This view gives the count of successful GET requests for each article and includes the author's name:
