@@ -1,6 +1,10 @@
 # Logs Analysis
 
-A reporting tool to help analyze our news articles
+A reporting tool to help analyze our news articles and provide three key insights to questions posed in this excersize. 
+
+This tool requires the "news" database provided by Udacity [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip). 
+
+Run `logsAnalysis -c` to see how the analytics turned out!
 
 ## Usage
 ```
@@ -15,7 +19,7 @@ optional arguments:
 ## Views Set Up in the Database
 
 Two views have been added to the database schema to assist in analysis. These views can 
-be created by running `logAnalysis -c`
+be created by running `logsAnalysis -c`
 
 ### New View: article_view_count
 This view gives the count of successful GET requests for each article and includes the author's name:
